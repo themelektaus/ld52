@@ -1,0 +1,216 @@
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace AssetTemplates.Deprecated
+{
+    class CreateAssetFromTemplateWindow : EditorWindow
+    {
+        [SerializeField]
+        VisualTreeAsset visualTreeAsset;
+
+        //[MenuItem("Assets/Create Asset from Template")]
+        public static void Open()
+        {
+            var window = CreateInstance<CreateAssetFromTemplateWindow>();
+
+            window.titleContent = new("Create Asset from Template");
+
+            var position = window.position;
+            position.size = new(440, 320);
+            window.position = position;
+
+            if (Selection.assetGUIDs.Length > 0)
+            {
+                window.contextPath = AssetDatabase.GUIDToAssetPath(Selection.assetGUIDs[0]);
+                if (!Directory.Exists(window.contextPath))
+                    window.contextPath = Path.GetDirectoryName(window.contextPath).Replace('\\', '/');
+            }
+
+            window.ShowAuxWindow();
+        }
+
+        string contextPath = "Assets";
+
+        VisualElement assetTemplateComboBox;
+        string[] assetTemplateGUIDs;
+        string[] assetTemplatePaths;
+        AssetTemplate[] assetTemplates;
+        AssetTemplate assetTemplate;
+
+        TextField path;
+        Button currentPath;
+        VisualElement variables;
+
+        Button create;
+
+        bool updateGUI;
+        Focusable focusElement;
+
+        public void CreateGUI()
+        {
+            if (!visualTreeAsset)
+                return;
+
+            VisualElement root = rootVisualElement;
+
+            //root.AddVisualTreeAsset(visualTreeAsset);
+
+            CreateGUI_AssetTemplate(root);
+            CreateGUI_Path(root);
+            CreateGUI_Variables(root);
+            CreateGUI_Create(root);
+        }
+
+        void CreateGUI_AssetTemplate(VisualElement root)
+        {
+            assetTemplateGUIDs = AssetDatabase.FindAssets($"t:{typeof(AssetTemplate).FullName}");
+            assetTemplatePaths = assetTemplateGUIDs.Select(x => AssetDatabase.GUIDToAssetPath(x)).ToArray();
+            assetTemplates = assetTemplatePaths.Select(x => AssetDatabase.LoadAssetAtPath<AssetTemplate>(x)).ToArray();
+
+            assetTemplateComboBox = root.Q<VisualElement>("AssetTemplateComboBox");
+            //assetTemplateComboBox.ToTypeComboBox(
+            //    label: "Asset Template",
+            //    focus: true,
+            //    search: text =>
+            //    {
+            //        return assetTemplates
+            //            .Where(x => x.GetName().SearchMatch(text))
+            //            .Select(x => (x.GetName(), x));
+            //    },
+            //    load: () =>
+            //    {
+            //        var name = assetTemplate ? assetTemplate.GetName() : "(Select Asset Template)";
+            //        return (name, assetTemplate);
+            //    },
+            //    save: value =>
+            //    {
+            //        assetTemplate = value;
+            //    },
+            //    blur: () =>
+            //    {
+            //        updateGUI = true;
+            //    }
+            //);
+        }
+
+        void Update()
+        {
+            if (focusElement is not null)
+            {
+                focusElement.Focus();
+                focusElement = null;
+                return;
+            }
+
+            if (!updateGUI)
+                return;
+
+            updateGUI = false;
+
+                path.value = contextPath;
+
+            variables.Clear();
+
+            //if (!assetTemplate)
+            //  return;
+
+            //foreach (var variable in assetTemplate.variables)
+            //{
+            //    var textField = new TextField(variable.name) { multiline = variable.multilineValue };
+            //    textField.userData = variable;
+            //    textField.value = variable.value;
+            //    if (variable.multilineValue)
+            //        textField.style.minHeight = 40;
+            //    variables.Add(textField);
+            //
+            //    if (focusElement is null && string.IsNullOrEmpty(textField.value))
+            //        focusElement = textField;
+            //}
+        }
+
+        void CreateGUI_Path(VisualElement root)
+        {
+            path = root.Q<TextField>("Path");
+
+            if (contextPath is null)
+            {
+                root.Remove(currentPath);
+                currentPath = null;
+                return;
+            }
+        }
+
+        void CreateGUI_Variables(VisualElement root)
+        {
+            variables = root.Q<VisualElement>("Variables");
+        }
+
+        void CreateGUI_Create(VisualElement root)
+        {
+            create = root.Q<Button>("Create");
+            create.clicked += () =>
+            {
+                if (assetTemplate is null)
+                {
+                    Debug.LogError($"No template selected");
+                    goto Fail;
+                }
+
+                var variables = new List<AssetTemplate.Variable>();
+                foreach (TextField textField in this.variables.Children())
+                {
+                    var variable = (AssetTemplate.Variable) textField.userData;
+                    variable.value = textField.value;
+                    variables.Add(variable);
+                }
+
+                foreach (var variable in variables)
+                {
+                    if (variable.required && string.IsNullOrEmpty(variable.value))
+                    {
+                        Debug.LogError($"Variable \"{variable.name}\" is empty but is required");
+                        goto Fail;
+                    }
+                }
+
+                var fileTransfers = assetTemplate.GenerateFileTransfers(path.value, variables);
+                if (fileTransfers.Count == 0)
+                {
+                    Debug.LogError($"There are no files to create");
+                    goto Fail;
+                }
+
+                foreach (var fileTransfer in fileTransfers)
+                {
+                    if (File.Exists(fileTransfer.target))
+                    {
+                        Debug.LogError($"File already exists: {fileTransfer.target}");
+                        goto Fail;
+                    }
+                }
+
+                foreach (var fileTransfer in fileTransfers)
+                    new FileInfo(fileTransfer.target).Directory.Create();
+
+                foreach (var fileTransfer in fileTransfers)
+                    File.WriteAllText(fileTransfer.target, fileTransfer.contents);
+
+                AssetDatabase.Refresh();
+
+                Close();
+
+                var asset = AssetDatabase.LoadAssetAtPath(fileTransfers[0].target, typeof(Object));
+                AssetDatabase.OpenAsset(asset);
+
+                return;
+
+            Fail:
+                Close();
+            };
+        }
+    }
+}
