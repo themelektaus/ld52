@@ -19,7 +19,7 @@ namespace Prototype
 			public const string Exit = "Exit";
 		}
 
-		public static class Tiggers
+		public static class Triggers
         {
 			public const string Next = "Next";
 			public const string Back = "Back";

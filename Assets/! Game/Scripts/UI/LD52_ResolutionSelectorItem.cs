@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Prototype
 {
@@ -10,7 +11,7 @@ namespace Prototype
         public Color textColor;
         public Color selectedTextColor;
 
-        public event System.Action onClick;
+        public UnityEvent onClick;
 
         public bool selected { get; private set; }
 
@@ -20,7 +21,7 @@ namespace Prototype
                 return;
 
             Select();
-            onClick?.Invoke();
+            onClick.Invoke();
         }
 
         public void Select()

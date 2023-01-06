@@ -1371,6 +1371,21 @@ MonoBehaviour:
   text: {fileID: 2498623310722271346}
   textColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   selectedTextColor: {r: 0, g: 1, b: 0, a: 1}
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 8383c7aff75321d4b8eafda05ba266ce, type: 2}
+        m_TargetAssemblyTypeName: Prototype.LD52_Global, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 590718f863429e44b869f026bf87b9bf, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Prototype.SoundEffectCollection, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5815052972875667784
 GameObject:
   m_ObjectHideFlags: 0

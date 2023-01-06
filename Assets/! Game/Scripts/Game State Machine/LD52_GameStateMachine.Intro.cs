@@ -7,6 +7,8 @@ namespace Prototype
 		{
 			gameStateInstances.Add(intro);
 			gameStateInstances.Add(introUI, mainCanvas);
+
+			this.Wait(5).Start(() => Trigger(Triggers.Next));
 		}
 
 		[BeforeExit(States.Intro)]

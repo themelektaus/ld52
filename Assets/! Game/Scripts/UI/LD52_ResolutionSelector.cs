@@ -90,7 +90,7 @@ namespace Prototype
                     item.Select();
 
                 int _i = i++;
-                item.onClick += () => SetIndex(_i);
+                item.onClick.AddListener(() => SetIndex(_i));
             }
 
             itemTemplate.gameObject.Destroy();
