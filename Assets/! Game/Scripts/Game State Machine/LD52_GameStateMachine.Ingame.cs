@@ -16,7 +16,11 @@ namespace Prototype
 		void AfterEnter_Ingame(AnimatorStateInfo lastState)
 		{
 			if (!lastState.IsName(States.Pause))
-				gameStateInstances.Add(ingame);
+            {
+				var ingameInstance = gameStateInstances.Add(ingame);
+				if (ingameInstance is not null)
+					ingameInstance.gameObject.name = "Ingame";
+			}
 			gameStateInstances.Add(ingameUI, mainCanvas);
 		}
 

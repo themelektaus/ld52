@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: NodeEditor - OpenSans - Regular
+  m_Name: LD52 - OpenSans - Regular
   m_EditorClassIdentifier: 
-  hashCode: 1568686944
+  hashCode: -1720420690
   material: {fileID: 21539420542967178}
-  materialHashCode: 717081024
+  materialHashCode: -120417586
   m_Version: 1.1.0
   m_SourceFontFileGUID: 5997fe0be3eb5fd40810e50d6cabb652
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -2901,7 +2901,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NodeEditor - OpenSans - Regular (Material)
+  m_Name: LD52 - OpenSans - Regular (Material)
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -3008,7 +3008,7 @@ Texture2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NodeEditor - OpenSans - Regular (Atlas)
+  m_Name: LD52 - OpenSans - Regular (Atlas)
   m_ImageContentsHash:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000

@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51267ee643750e5459c7332a6f18a7a2, type: 3}
   m_Name: LD52 - Global
   m_EditorClassIdentifier: 
+  playerSettings:
+    speed: 10

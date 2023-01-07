@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Prototype
 {
@@ -33,7 +34,7 @@ namespace Prototype
 
         public void Notify(T message)
         {
-            foreach (var observerInfo in observerInfos)
+            foreach (var observerInfo in observerInfos.ToList())
                 if (observerInfo.validation is null || observerInfo.validation(message))
                     observerInfo.observer.ReceiveNotification(message);
         }

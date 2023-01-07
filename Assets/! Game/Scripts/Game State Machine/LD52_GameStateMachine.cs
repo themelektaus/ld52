@@ -32,6 +32,7 @@ namespace Prototype
 		}
 
 		public bool IsIngame() => animator.GetBool("Is Ingame");
+		public bool IsIngamePaused() => !HasState(States.Ingame);
 		public void EnableIngame() => animator.SetBool("Is Ingame", true);
 		public void DisableIngame() => animator.SetBool("Is Ingame", false);
 
