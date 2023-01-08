@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261434cde81ee0b4796f44537610938c, type: 3}
+  m_Name: LD52 - Upgrade - Harvest Radius - Costs
+  m_EditorClassIdentifier: 
+  min: 2
+  max: 14
+  clampType: 0
+  points:
+  - position: {x: 0, y: 0}
+    tangent: {x: -0.1, y: 0, z: 0.2, w: 0.2}
+  - position: {x: 1, y: 1}
+    tangent: {x: -0.2, y: -0.2, z: 0.1, w: 0}
+  bezierPoints:
+  - {x: 0, y: 0}
+  - {x: 0.034786414, y: 0.034786414}
+  - {x: 0.075521216, y: 0.075521216}
+  - {x: 0.1215046, y: 0.1215046}
+  - {x: 0.17203674, y: 0.17203674}
+  - {x: 0.22641784, y: 0.22641784}
+  - {x: 0.28394806, y: 0.28394806}
+  - {x: 0.34392768, y: 0.34392768}
+  - {x: 0.4056568, y: 0.4056568}
+  - {x: 0.46843567, y: 0.46843567}
+  - {x: 0.53156435, y: 0.53156435}
+  - {x: 0.5943432, y: 0.5943432}
+  - {x: 0.65607226, y: 0.65607226}
+  - {x: 0.71605194, y: 0.71605194}
+  - {x: 0.7735821, y: 0.7735821}
+  - {x: 0.82796323, y: 0.82796323}
+  - {x: 0.87849545, y: 0.87849545}
+  - {x: 0.92447877, y: 0.92447877}
+  - {x: 0.9652136, y: 0.9652136}
+  - {x: 1, y: 1}
+  timeline:
+    events: []

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 3127395233316031618, guid: 2e1fc6570b1770a4e8ce2eda372d8405, type: 3}
   spawnAreaQuery: {fileID: 11400000, guid: 7c2c6164f6d754041812ec5b44a4c8e4, type: 2}
-  value: 5
-  weight: 3
+  value: 6
+  weight: 1
   rarity: 0.9

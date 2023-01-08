@@ -19,9 +19,8 @@ namespace Prototype
             LD52_Global.instance.playerQuery.ClearCache();
 
             character.getMoveDirection = () => LD52_Global.GetInputAxis();
-            character.getMoveSpeed = () => LD52_Global.instance.playerSettings.speed.x;
-            character.getCharacterSettings = () => LD52_Global.instance.playerSettings;
-
+            character.getMoveSpeed = () => LD52_Global.instance.upgrades.moveSpeed.GetCurrent();
+            
             character.onUpdate += Character_onUpdate;
             character.onUpdateDirection += Character_onUpdateDirection;
 
@@ -44,6 +43,8 @@ namespace Prototype
             if (items.Count == 0)
                 return;
 
+            message.sender.Feed();
+
             var item = items[0];
             items.RemoveAt(0);
             LD52_Global.instance.altarItems.Add(item);
@@ -62,7 +63,7 @@ namespace Prototype
 
         public bool Add(LD52_EnemyItem item)
         {
-            if (items.Count >= LD52_Global.instance.playerSettings.itemCapacity)
+            if (items.Count >= LD52_Global.instance.upgrades.carryingCapacity.GetCurrent())
                 return false;
 
             items.Add(item);

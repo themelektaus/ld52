@@ -13,10 +13,21 @@ namespace Prototype
             public float strength;
         }
 
-        public float radius = 5;
+        public float radius { get; private set; }
+        float strength;
 
         [SerializeField] Transform model;
+
+        [SerializeField] GameObject circle;
+        [SerializeField] ParticleSystem particleEffect;
+
         [SerializeField] float maxDistanceToPlayer = 1;
+
+        void Awake()
+        {
+            radius = LD52_Global.instance.upgrades.harvestRadius.GetCurrent();
+            strength = LD52_Global.instance.upgrades.harvestStrength.GetCurrent();
+        }
 
         void Update()
         {
@@ -27,11 +38,15 @@ namespace Prototype
 
             if (!LD52_Global.GetInputHarvest())
             {
-                model.gameObject.SetActive(false);
+                circle.SetActive(false);
+                var emission2 = particleEffect.emission;
+                emission2.enabled = false;
                 return;
             }
 
-            model.gameObject.SetActive(true);
+            circle.SetActive(true);
+            var emission = particleEffect.emission;
+            emission.enabled = true;
 
             var player = LD52_Global.instance.GetPlayer();
             if (!player)
@@ -53,7 +68,7 @@ namespace Prototype
             else
                 position = cursorPosition;
 
-            harvestSubject.Notify(new() { sender = this, position = position, strength = 1 });
+            harvestSubject.Notify(new() { sender = this, position = position, strength = strength });
 
             transform.position = position.ToX0Z();
         }

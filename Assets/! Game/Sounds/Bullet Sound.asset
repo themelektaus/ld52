@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61a999748d5dc942a06b1a721e572a9, type: 3}
+  m_Name: Bullet Sound
+  m_EditorClassIdentifier: 
+  defaultAudioMixerGroup: {fileID: 643429172089600595, guid: 5b01fa18a5d31ac408fe25470b399bd7, type: 2}
+  clips:
+  - {fileID: 8300000, guid: 99f4846d91043124c93c387a64f1fa6a, type: 3}
+  - {fileID: 8300000, guid: 98163e299a830a04fa27c654a1fe5c03, type: 3}

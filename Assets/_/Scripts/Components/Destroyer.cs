@@ -7,7 +7,14 @@ namespace Prototype
     {
         [SerializeField] GameObject target;
         [SerializeField] float delay;
-        
+        [SerializeField] bool destroyOnAwake;
+
+        void Awake()
+        {
+            if (destroyOnAwake)
+                DestroyTarget();
+        }
+
         public void DestroyTarget()
         {
             this.Wait(delay).Destroy(target).Start();

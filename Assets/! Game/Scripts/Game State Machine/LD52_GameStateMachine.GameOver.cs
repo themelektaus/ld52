@@ -25,6 +25,8 @@ namespace Prototype
 		void AfterExit_GameOver()
 		{
 			gameStateInstances.Clear();
+
+			LD52_Global.instance.ResetGame();
 		}
 	}
 }

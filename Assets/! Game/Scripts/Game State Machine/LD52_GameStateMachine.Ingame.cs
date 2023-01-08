@@ -28,12 +28,25 @@ namespace Prototype
 
                 var global = LD52_Global.instance;
                 global.wave.time = 0;
+                global.altarItems.Clear();
+
+                int breaker = 10000;
 
                 int budget = global.wave.budget;
-                while (budget > 0)
+
+                // budget must be greater than one because the cheapest enemy costs 2
+                while (budget > 1)
                 {
+                    breaker--;
+                    if (breaker < 0)
+                    {
+                        Debug.LogError($"{budget} 10000 oida, was is");
+                        Debug.Break();
+                        break;
+                    }
+
                     var t = Random.value;
-                    
+
                     var enemyItem = enemyItems
                         .Where(x => x.rarity <= t)
                         .OrderByDescending(x => x.rarity)
@@ -50,6 +63,7 @@ namespace Prototype
                     budget -= enemyItem.value;
                 }
             }
+
             gameStateInstances.Add(ingameUI, mainCanvas);
         }
 
@@ -58,33 +72,40 @@ namespace Prototype
         {
             var global = LD52_Global.instance;
 
-            if (!UpdateWave(global))
-                return;
-
-            UpdateSpawn(global);
+            UpdateWave(global);
         }
 
-        bool UpdateWave(LD52_Global global)
+        void UpdateWave(LD52_Global global)
         {
             global.wave.time = Mathf.Min(global.wave.time + Time.deltaTime, global.wave.duration);
 
             if (global.wave.time == global.wave.duration)
             {
-                Trigger(Triggers.EndOfWave);
-                return false;
+                if (
+                    global.upgrades.moveSpeed.maxLevel <= global.upgrades.moveSpeed.level &&
+                    global.upgrades.harvestRadius.maxLevel <= global.upgrades.harvestRadius.level &&
+                    global.upgrades.harvestStrength.maxLevel <= global.upgrades.harvestStrength.level &&
+                    global.upgrades.shootSpeed.maxLevel <= global.upgrades.shootSpeed.level &&
+                    global.upgrades.shootDamage.maxLevel <= global.upgrades.shootDamage.level &&
+                    global.upgrades.carryingCapacity.maxLevel <= global.upgrades.carryingCapacity.level
+                )
+                {
+                    LD52_Global.instance.gameOverState = 2;
+                    Trigger(Triggers.GameOver);
+                }
+                else
+                {
+                    LD52_Global.instance.gameOverState = 1;
+                    Trigger(Triggers.EndOfWave);
+                }
             }
-
-            return true;
-        }
-
-        void UpdateSpawn(LD52_Global global)
-        {
-
         }
 
         [BeforeExit(States.Ingame)]
         void BeforeExit_Ingame()
         {
+            LD52_Global.instance.UpdateDeadEnemiesValue();
+
             gameStateInstances.DestroyChildrenOf(ingameUI);
         }
 

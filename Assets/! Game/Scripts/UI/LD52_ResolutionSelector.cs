@@ -124,11 +124,11 @@ namespace Prototype
                     item.Select();
 
                 int _i = i++;
-                item.onClick += () =>
+                item.onClick.AddListener(() =>
                 {
                     var (width, height) = entries[_i];
                     Screen.SetResolution(width, height, Screen.fullScreen);
-                };
+                });
             }
 
             itemTemplate.gameObject.Destroy();

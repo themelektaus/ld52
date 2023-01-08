@@ -13,9 +13,9 @@ namespace Prototype
             public float damage;
         }
 
-        [SerializeField] float speed = 20;
-        [SerializeField] float radius = .25f;
-        [SerializeField] float damage = 1;
+        public float speed = 20;
+        public float radius = .25f;
+        public float damage = 1;
 
         [HideInInspector] public Vector2 direction;
 

@@ -18,6 +18,8 @@ namespace Prototype.Pending
         public UnityEvent onLeftClick;
         public UnityEvent onRightClick;
 
+        public bool active;
+
         Animator animator;
         bool destroyed;
 
@@ -48,22 +50,31 @@ namespace Prototype.Pending
             animator.keepAnimatorStateOnDisable = true;
 
             AnimatorSetBool("Visible", true);
+            AnimatorSetBool("Disabled", true);
         }
 
         protected override void OnDisable()
         {
             AnimatorSetBool("Hover", false);
+            AnimatorSetBool("Disabled", true);
+            AnimatorSetBool("Active", false);
             base.OnDisable();
+        }
+
+        void OnEnable()
+        {
+            AnimatorSetBool("Disabled", false);
         }
 
         void Update()
         {
             AnimatorSetBool("Hover", !destroyed && isHovering);
+            AnimatorSetBool("Active", !destroyed && active);
         }
 
         protected override void OnDown(int button)
         {
-            if (destroyed)
+            if (destroyed || active)
                 return;
 
             var now = DateTime.Now;

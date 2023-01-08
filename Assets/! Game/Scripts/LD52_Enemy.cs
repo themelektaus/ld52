@@ -13,7 +13,7 @@ namespace Prototype
 
         [SerializeField] float minDistanceToPlayer = 10;
 
-        [SerializeField] LD52_EnemyItem item;
+        public LD52_EnemyItem item;
 
         [SerializeField] Transform mesh;
         [SerializeField] bool buried;
@@ -64,7 +64,7 @@ namespace Prototype
 
         public void ReceiveNotification(LD52_Harvest.HarvestMessage message)
         {
-            var distance = (character.agentPosition.ToXZ() - message.position).magnitude;
+            var distance = (character.collider.transform.position.ToXZ() - message.position).magnitude;
             if (distance > message.sender.radius)
                 return;
 
@@ -95,6 +95,7 @@ namespace Prototype
         {
             buried = false;
             character.agent.enabled = true;
+            LD52_Global.instance.PlayDigOutSound();
 
             var position = mesh.localPosition;
             position.y = -.1f;

@@ -6,8 +6,6 @@ namespace Prototype
     {
         [SerializeField] GameObject projectile;
 
-        [SerializeField] float shootInterval = .2f;
-        
         float shootTimer;
 
         void Update()
@@ -30,12 +28,18 @@ namespace Prototype
             if (!player)
                 return;
 
-            projectile
-                .Instantiate(position: player.character.agentPosition + Vector3.up)
-                .GetComponent<LD52_Projectile>()
-                .direction = (transform.position - player.character.agentPosition).ToXZ();
+            LD52_Global.instance.PlayBulledSound();
 
-            shootTimer = shootInterval;
+            var projectile = this.projectile
+                .Instantiate(position: player.character.agentPosition + Vector3.up)
+                .GetComponent<LD52_Projectile>();
+
+            var shootSpeed = LD52_Global.instance.upgrades.shootSpeed.GetCurrent();
+            projectile.speed = 5 + shootSpeed / 5;
+            projectile.damage = LD52_Global.instance.upgrades.shootDamage.GetCurrent();
+            projectile.direction = (transform.position - player.character.agentPosition).ToXZ();
+
+            shootTimer = 10 / shootSpeed;
         }
     }
 }

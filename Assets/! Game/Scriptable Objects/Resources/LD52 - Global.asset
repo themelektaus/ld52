@@ -12,18 +12,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51267ee643750e5459c7332a6f18a7a2, type: 3}
   m_Name: LD52 - Global
   m_EditorClassIdentifier: 
-  playerSettings:
-    speed: {x: 6, y: 6}
-    maxHealth: 1
-    maxHarvestLife: 1
-    maxBuried: 1
-    itemCapacity: 3
   playerQuery: {fileID: 11400000, guid: 9ae332ad1028b6440938f89808b0a960, type: 2}
+  enemyQuery: {fileID: 11400000, guid: e57fab43fb8f5e34d8995ad139474792, type: 2}
+  money: 0
+  upgrades:
+    moveSpeed:
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: 7951d6e540fcdfb499fa5e5315b22035, type: 2}
+      costsCurve: {fileID: 11400000, guid: 26fdf9ddf873ecf4fab00272e6ec0d59, type: 2}
+    harvestRadius:
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: b33c745d73a67814ab64d0f3d88a01b5, type: 2}
+      costsCurve: {fileID: 11400000, guid: 97163af8a234bfd4e9c520e11c0590be, type: 2}
+    harvestStrength:
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: 3e3c5e85fb649fa4fa74ab28d660e55d, type: 2}
+      costsCurve: {fileID: 11400000, guid: 75d504f739738a94ab46683582677d95, type: 2}
+    shootSpeed:
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: eb88bd023a94e1b428fb6d38c5e14937, type: 2}
+      costsCurve: {fileID: 11400000, guid: 5f3bfacc4c8b5df4d8b79db83375f6ec, type: 2}
+    shootDamage:
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: 9f030fb5370bf664c8d1667f018faa82, type: 2}
+      costsCurve: {fileID: 11400000, guid: 490d03bd62f08eb4ea80506f8a16d39e, type: 2}
+    carryingCapacity:
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: b5028e5621423ae4584dc5df66246fe5, type: 2}
+      costsCurve: {fileID: 11400000, guid: 37e73ce282a32814a9af0cca0e1db100, type: 2}
   wave:
-    index: 5
+    index: 0
     maxIndex: 10
     time: 0
     budgetCurve: {fileID: 11400000, guid: 8c1663a02b72d994b8757f7267513fc5, type: 2}
     durationCurve: {fileID: 11400000, guid: 38a0646c811fb4343b4791e241953698, type: 2}
     minAltarValueCurve: {fileID: 11400000, guid: 714a6325f82c44542a3c83c549634221, type: 2}
   altarItems: []
+  digOutSound: {fileID: 11400000, guid: 74abb3b3dcd360140aa9693aa3468866, type: 2}
+  harvestSound: {fileID: 11400000, guid: 2840fe1523833ae448dc421b9ad58ecf, type: 2}
+  hitSound: {fileID: 11400000, guid: ed867b652bfaf1142a18d1f99db97755, type: 2}
+  deathSound: {fileID: 11400000, guid: 3f72d44917b86b0418230c18ed98796c, type: 2}
+  bulletSound: {fileID: 11400000, guid: c3ae12a1dc488c248a376a007f27891c, type: 2}
+  gameOverState: 0

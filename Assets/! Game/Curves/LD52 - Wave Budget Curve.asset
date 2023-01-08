@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261434cde81ee0b4796f44537610938c, type: 3}
   m_Name: LD52 - Wave Budget Curve
   m_EditorClassIdentifier: 
-  min: 80
-  max: 90
+  min: 40
+  max: 50
   clampType: 0
   points:
   - position: {x: 0, y: 0}

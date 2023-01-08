@@ -14,6 +14,9 @@ Shader "LD52/Custom Standard"
 
         _RimColor("Rim Color", Color) = (1, 1, 1, 0.2)
         _RimIntensity("Rim Intensity", Range(0, 10)) = 0
+
+            _Hit("Hit", Range(0, 1)) = 0
+
     }
     
     SubShader
@@ -35,6 +38,7 @@ Shader "LD52/Custom Standard"
         sampler2D _MainTex;
         half _Metallic;
         half _Glossiness;
+        half _Hit;
 
         half _Brightness;
 
@@ -79,7 +83,7 @@ Shader "LD52/Custom Standard"
 
             float rim = _RimIntensity > 0 ? pow(1 - dot(normalize(IN.viewDir), normalize(IN.worldNormal)), _RimIntensity) : 0;
             o.Albedo = lerp(tex2D(_MainTex, IN.uv_MainTex).rgb * _Color.rgb + (_Brightness - 1), _RimColor.rgb, rim * _RimColor.a);
-            o.Emission = lerp(_EmissionColor.rgb * _EmissionColor.a, _RimColor.rgb, rim * _RimColor.a);
+            o.Emission = lerp(_EmissionColor.rgb * _EmissionColor.a, _RimColor.rgb, rim * _RimColor.a) + (float3(1, .5, 0) * _Hit);
             o.Alpha = alpha;
             o.Metallic = _Metallic * _Metallic;
             o.Smoothness = _Glossiness;

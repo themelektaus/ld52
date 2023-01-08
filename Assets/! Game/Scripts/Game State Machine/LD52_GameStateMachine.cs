@@ -9,7 +9,6 @@ namespace Prototype
 		public static class States
         {
 			public const string Intro = "Intro";
-			public const string Title = "Title";
 			public const string MainMenu = "Main Menu";
 			public const string Settings = "Settings";
 			public const string Ingame = "Ingame";
@@ -44,8 +43,6 @@ namespace Prototype
 
 		[SerializeField] GameObject intro;
 		[SerializeField] GameObject introUI;
-		[SerializeField] GameObject title;
-		[SerializeField] GameObject titleUI;
 		[SerializeField] GameObject mainMenu;
 		[SerializeField] GameObject mainMenuUI;
 		[SerializeField] GameObject settings;
@@ -68,6 +65,7 @@ namespace Prototype
 		LD52_GameStateInstances gameStateInstances;
 
 		SoundEffectInstance music;
+		[SerializeField] SoundEffectCollection theMusic;
 
 		protected override void OnAwake()
         {

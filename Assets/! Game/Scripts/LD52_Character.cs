@@ -30,6 +30,8 @@ namespace Prototype
         public LD52_Global.CharacterSettings settings
             => _settings ??= getCharacterSettings?.Invoke() ?? new();
 
+        readonly SmoothQuaternion rotation = new(new(), .1f);
+
         void OnEnable()
         {
             agent.enabled = true;
@@ -54,9 +56,14 @@ namespace Prototype
 
             var direction = getMoveDirection?.Invoke().ToX0Z().normalized ?? new();
             
-            if (!Utils.Approximately(direction, new()))
+            if (Utils.Approximately(direction, new()))
             {
-                agent.transform.rotation = Quaternion.LookRotation(direction);
+                animator.SetFloat("Move", 0);
+            }
+            else
+            {
+                animator.SetFloat("Move", 1);
+                rotation.target = Quaternion.LookRotation(direction);
                 onUpdateDirection?.Invoke(direction);
             }
 
@@ -67,15 +74,26 @@ namespace Prototype
 
             if (agent.enabled)
                 agent.Move(direction);
+
+            rotation.Update();
+            agent.transform.rotation = rotation;
         }
 
         public void TakeDamage(float damage)
         {
+            if (TryGetComponent(out LD52_HitObject hitObject))
+                hitObject.hitWeight = 1;
+
             health = Mathf.Max(0, health - damage);
             if (health == 0)
             {
+                LD52_Global.instance.PlayDeathSound();
                 animator.SetTrigger("Die");
                 onDie?.Invoke();
+            }
+            else
+            {
+                LD52_Global.instance.PlayHitSound();
             }
         }
 
@@ -84,6 +102,7 @@ namespace Prototype
             harvestLife = Mathf.Max(0, harvestLife - value);
             if (harvestLife == 0)
             {
+                LD52_Global.instance.PlayHarvestSound();
                 //animator.SetTrigger("Harvest");
                 onHarvest?.Invoke();
             }

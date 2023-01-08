@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261434cde81ee0b4796f44537610938c, type: 3}
+  m_Name: LD52 - Upgrade - Shoot Speed
+  m_EditorClassIdentifier: 
+  min: 20
+  max: 100
+  clampType: 0
+  points:
+  - position: {x: 0, y: 0}
+    tangent: {x: -0.1, y: 0, z: 0.4, w: 0}
+  - position: {x: 1, y: 1}
+    tangent: {x: -0.2, y: -0.4, z: 0.1, w: 0}
+  bezierPoints:
+  - {x: 0, y: 0}
+  - {x: 0.06312874, y: 0.004869515}
+  - {x: 0.12608251, y: 0.019011518}
+  - {x: 0.18868642, y: 0.041726198}
+  - {x: 0.25076538, y: 0.072313756}
+  - {x: 0.31214464, y: 0.11007436}
+  - {x: 0.37264907, y: 0.1543082}
+  - {x: 0.43210378, y: 0.20431548}
+  - {x: 0.4903339, y: 0.25939643}
+  - {x: 0.5471644, y: 0.31885117}
+  - {x: 0.60242015, y: 0.38197994}
+  - {x: 0.6559265, y: 0.4480828}
+  - {x: 0.7075084, y: 0.51646006}
+  - {x: 0.75699085, y: 0.5864121}
+  - {x: 0.80419886, y: 0.65723866}
+  - {x: 0.84895754, y: 0.7282403}
+  - {x: 0.89109206, y: 0.7987171}
+  - {x: 0.93042713, y: 0.86796904}
+  - {x: 0.9667882, y: 0.93529665}
+  - {x: 1, y: 1}
+  timeline:
+    events: []

@@ -22,6 +22,7 @@ namespace Prototype
         {
             if (nextState.IsName(States.GameOver))
             {
+                LD52_Global.instance.gameOverState = 0;
                 gameStateInstances.Clear();
                 return;
             }

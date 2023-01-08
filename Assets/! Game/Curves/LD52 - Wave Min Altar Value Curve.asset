@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 261434cde81ee0b4796f44537610938c, type: 3}
   m_Name: LD52 - Wave Min Altar Value Curve
   m_EditorClassIdentifier: 
-  min: 10
-  max: 200
+  min: 2
+  max: 15
   clampType: 0
   points:
   - position: {x: 0, y: 0}
