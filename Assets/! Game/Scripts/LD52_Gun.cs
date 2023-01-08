@@ -4,7 +4,6 @@ namespace Prototype
 {
     public class LD52_Gun : MonoBehaviour
     {
-        [SerializeField] ObjectQuery playerQuery;
         [SerializeField] GameObject projectile;
 
         [SerializeField] float shootInterval = .2f;
@@ -27,12 +26,12 @@ namespace Prototype
             if (!LD52_Global.GetInputShoot())
                 return;
 
-            var player = playerQuery.FindComponent<LD52_Player>();
+            var player = LD52_Global.instance.GetPlayer();
             if (!player)
                 return;
 
             projectile
-                .Instantiate(position: player.character.agentPosition)
+                .Instantiate(position: player.character.agentPosition + Vector3.up)
                 .GetComponent<LD52_Projectile>()
                 .direction = (transform.position - player.character.agentPosition).ToXZ();
 

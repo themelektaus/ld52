@@ -2,23 +2,38 @@ using UnityEngine;
 
 namespace Prototype
 {
-	public class LD52_Altar : MonoBehaviour, IObserver<LD52_Projectile.HitMessage>
+	public class LD52_Altar : MonoBehaviour
 	{
-        [SerializeField] new Collider collider;
+        public static Observable<WantItemMessage> wantItemSubject = new();
 
-        void OnEnable()
+        public struct WantItemMessage
         {
-            LD52_Projectile.hitSubject.Register(this, x => x.reciever == collider);
+            public LD52_Altar sender;
+            public Collider reciever;
         }
 
-        void OnDisable()
+        [SerializeField] float radius = 2;
+
+        int colliderCount;
+        readonly Collider[] colliders = new Collider[20];
+
+        void Update()
         {
-            LD52_Projectile.hitSubject.Unregister(this);
+            colliderCount = Physics.OverlapSphereNonAlloc(transform.position, radius, colliders);
+            for (int i = 0; i < colliderCount; i++)
+            {
+                wantItemSubject.Notify(new()
+                {
+                    sender = this,
+                    reciever = colliders[i]
+                });
+            }
         }
 
-        public void ReceiveNotification(LD52_Projectile.HitMessage message)
+        void OnDrawGizmosSelected()
         {
-            message.sender.gameObject.Destroy();
+            Gizmos.color = new(0, 1, 1, .25f);
+            Gizmos.DrawSphere(transform.position, radius);
         }
     }
 }

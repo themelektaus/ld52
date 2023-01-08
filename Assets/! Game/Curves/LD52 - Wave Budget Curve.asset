@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 261434cde81ee0b4796f44537610938c, type: 3}
+  m_Name: LD52 - Wave Budget Curve
+  m_EditorClassIdentifier: 
+  min: 80
+  max: 90
+  clampType: 0
+  points:
+  - position: {x: 0, y: 0}
+    tangent: {x: -0.1, y: 0, z: 0.1, w: 0}
+  - position: {x: 1, y: 1}
+    tangent: {x: -0.1, y: 0, z: 0.1, w: 0}
+  bezierPoints:
+  - {x: 0, y: 0}
+  - {x: 0.021402538, y: 0.008018662}
+  - {x: 0.05321475, y: 0.030908298}
+  - {x: 0.09421198, y: 0.06691937}
+  - {x: 0.14316955, y: 0.11430237}
+  - {x: 0.19886282, y: 0.17130777}
+  - {x: 0.26006705, y: 0.236186}
+  - {x: 0.32555765, y: 0.30718762}
+  - {x: 0.3941099, y: 0.38256305}
+  - {x: 0.4644992, y: 0.46056283}
+  - {x: 0.53550076, y: 0.5394373}
+  - {x: 0.60589004, y: 0.61743695}
+  - {x: 0.6744423, y: 0.6928123}
+  - {x: 0.7399329, y: 0.763814}
+  - {x: 0.80113715, y: 0.8286922}
+  - {x: 0.8568305, y: 0.88569766}
+  - {x: 0.90578806, y: 0.9330807}
+  - {x: 0.9467852, y: 0.96909165}
+  - {x: 0.9785974, y: 0.99198127}
+  - {x: 1, y: 1}
+  timeline:
+    events: []

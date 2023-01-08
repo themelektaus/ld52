@@ -14,18 +14,20 @@ namespace Prototype
         }
 
         [SerializeField] float speed = 20;
+        [SerializeField] float radius = .25f;
         [SerializeField] float damage = 1;
 
         [HideInInspector] public Vector2 direction;
 
         int colliderCount;
-        Collider[] colliders = new Collider[10];
+        readonly Collider[] colliders = new Collider[20];
 
         void Update()
         {
+            transform.localScale = Vector3.one * (radius * 2);
             transform.position += direction.ToX0Z().normalized * (Time.deltaTime * speed);
 
-            colliderCount = Physics.OverlapSphereNonAlloc(transform.position, transform.localScale.x / 2, colliders);
+            colliderCount = Physics.OverlapSphereNonAlloc(transform.position, radius, colliders);
             for (int i = 0; i < colliderCount; i++)
             {
                 hitSubject.Notify(new()

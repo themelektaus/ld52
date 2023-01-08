@@ -3,29 +3,50 @@ using UnityEngine;
 
 namespace Prototype
 {
-	public class LD52_Player : MonoBehaviour
+	public class LD52_Player : MonoBehaviour, IObserver<LD52_Altar.WantItemMessage>
 	{
         public LD52_Character character;
 
         [SerializeField] Transform cameraTarget;
 
-        [SerializeField] List<LD52_EnemyItem> items;
+        public List<LD52_EnemyItem> items;
 
         Vector3 cameraTargetOffset;
         SmoothVector3 cameraTargetPosition;
 
         void Awake()
         {
-            character.playerQuery.ClearCache();
+            LD52_Global.instance.playerQuery.ClearCache();
 
             character.getMoveDirection = () => LD52_Global.GetInputAxis();
+            character.getMoveSpeed = () => LD52_Global.instance.playerSettings.speed.x;
             character.getCharacterSettings = () => LD52_Global.instance.playerSettings;
 
             character.onUpdate += Character_onUpdate;
             character.onUpdateDirection += Character_onUpdateDirection;
 
-            cameraTargetOffset = cameraTarget.localPosition.ToXZ().ToX0Z();
+            cameraTargetOffset = cameraTarget.localPosition;
             cameraTargetPosition = new(new(), .2f);
+        }
+
+        void OnEnable()
+        {
+            LD52_Altar.wantItemSubject.Register(this, x => x.reciever == character.collider);
+        }
+
+        void OnDisable()
+        {
+            LD52_Altar.wantItemSubject.Unregister(this);
+        }
+
+        public void ReceiveNotification(LD52_Altar.WantItemMessage message)
+        {
+            if (items.Count == 0)
+                return;
+
+            var item = items[0];
+            items.RemoveAt(0);
+            LD52_Global.instance.altarItems.Add(item);
         }
 
         void Character_onUpdate()

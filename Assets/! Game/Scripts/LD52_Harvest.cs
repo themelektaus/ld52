@@ -13,8 +13,6 @@ namespace Prototype
             public float strength;
         }
 
-        [SerializeField] ObjectQuery playerQuery;
-
         public float radius = 5;
 
         [SerializeField] Transform model;
@@ -28,9 +26,14 @@ namespace Prototype
                 return;
 
             if (!LD52_Global.GetInputHarvest())
+            {
+                model.gameObject.SetActive(false);
                 return;
+            }
 
-            var player = playerQuery.FindComponent<LD52_Player>();
+            model.gameObject.SetActive(true);
+
+            var player = LD52_Global.instance.GetPlayer();
             if (!player)
                 return;
 

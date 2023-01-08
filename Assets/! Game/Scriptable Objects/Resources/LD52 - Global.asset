@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51267ee643750e5459c7332a6f18a7a2, type: 3}
+  m_Name: LD52 - Global
+  m_EditorClassIdentifier: 
+  playerSettings:
+    speed: {x: 6, y: 6}
+    maxHealth: 1
+    maxHarvestLife: 1
+    maxBuried: 1
+    itemCapacity: 3
+  playerQuery: {fileID: 11400000, guid: 9ae332ad1028b6440938f89808b0a960, type: 2}
+  wave:
+    index: 5
+    maxIndex: 10
+    time: 0
+    budgetCurve: {fileID: 11400000, guid: 8c1663a02b72d994b8757f7267513fc5, type: 2}
+    durationCurve: {fileID: 11400000, guid: 38a0646c811fb4343b4791e241953698, type: 2}
+    minAltarValueCurve: {fileID: 11400000, guid: 714a6325f82c44542a3c83c549634221, type: 2}
+  altarItems: []

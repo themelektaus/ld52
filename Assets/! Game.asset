@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51267ee643750e5459c7332a6f18a7a2, type: 3}
-  m_Name: LD52 - Global
+  m_Script: {fileID: 11500000, guid: 3b4e0b16d5f0c3348b5f688e6e616837, type: 3}
+  m_Name: '! Game'
   m_EditorClassIdentifier: 
-  playerSettings:
-    speed: 10
+  title: '! Game'
+  menu: 
+  fixedMenu: 1
+  rootPath: '! Game'
+  subPath: 
+  flattenRecursively: 0
+  defaultAction: 0

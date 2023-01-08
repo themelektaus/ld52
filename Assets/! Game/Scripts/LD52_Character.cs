@@ -9,21 +9,26 @@ namespace Prototype
         public NavMeshAgent agent;
         public Vector3 agentPosition => agent.transform.position;
 
-        public ObjectQuery playerQuery;
-
         public new Collider collider;
         public Animator animator;
 
         public Func<Vector2> getMoveDirection;
+        public Func<float> getMoveSpeed;
         public Func<LD52_Global.CharacterSettings> getCharacterSettings;
 
         public event Action onUpdate;
         public event Action<Vector3> onUpdateDirection;
         public event Action onDie;
         public event Action onHarvest;
+        public event Action onDigOut;
 
-        float health;
-        float harvestLife;
+        public float health;
+        public float harvestLife;
+        public float buried;
+
+        LD52_Global.CharacterSettings _settings;
+        public LD52_Global.CharacterSettings settings
+            => _settings ??= getCharacterSettings?.Invoke() ?? new();
 
         void OnEnable()
         {
@@ -37,8 +42,9 @@ namespace Prototype
 
         void Start()
         {
-            health = getCharacterSettings().maxHealth;
-            harvestLife = getCharacterSettings().maxHarvestLife;
+            health = settings.maxHealth;
+            harvestLife = settings.maxHarvestLife;
+            buried = settings.maxBuried;
         }
 
         void Update()
@@ -46,7 +52,7 @@ namespace Prototype
             if (LD52_GameStateMachine.instance.IsIngamePaused())
                 return;
 
-            var direction = getMoveDirection().ToX0Z().normalized;
+            var direction = getMoveDirection?.Invoke().ToX0Z().normalized ?? new();
             
             if (!Utils.Approximately(direction, new()))
             {
@@ -56,10 +62,11 @@ namespace Prototype
 
             onUpdate?.Invoke();
 
-            direction *= getCharacterSettings().speed;
+            direction *= getMoveSpeed?.Invoke() ?? 1;
             direction *= Time.deltaTime;
 
-            agent.Move(direction);
+            if (agent.enabled)
+                agent.Move(direction);
         }
 
         public void TakeDamage(float damage)
@@ -79,6 +86,16 @@ namespace Prototype
             {
                 //animator.SetTrigger("Harvest");
                 onHarvest?.Invoke();
+            }
+        }
+
+        public void DigOut(float value)
+        {
+            buried = Mathf.Max(0, buried - value);
+            if (buried == 0)
+            {
+                //animator.SetTrigger("Dig Out");
+                onDigOut?.Invoke();
             }
         }
     }

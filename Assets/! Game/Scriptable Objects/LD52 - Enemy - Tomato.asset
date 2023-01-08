@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1a606f160c51149a75f441f7dd0a80, type: 3}
   m_Name: LD52 - Enemy - Tomato
   m_EditorClassIdentifier: 
+  enemy: {fileID: 3127395233316031618, guid: b27cff256aa4b2c43aa23991cdddf49f, type: 3}
+  spawnAreaQuery: {fileID: 11400000, guid: f26dfd9ee8670ae4c954b31378760adc, type: 2}
+  value: 1
+  weight: 1
+  rarity: 0

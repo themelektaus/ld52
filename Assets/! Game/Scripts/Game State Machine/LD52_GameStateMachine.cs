@@ -13,6 +13,8 @@ namespace Prototype
 			public const string MainMenu = "Main Menu";
 			public const string Settings = "Settings";
 			public const string Ingame = "Ingame";
+			public const string EndOfWave = "End of Wave";
+			public const string UpgradeMenu = "Upgrade Menu";
 			public const string Pause = "Pause";
 			public const string GameOver = "Game Over";
 			public const string Credits = "Credits";
@@ -25,6 +27,7 @@ namespace Prototype
 			public const string Back = "Back";
 			public const string Settings = "Settings";
 			public const string Ingame = "Ingame";
+			public const string EndOfWave = "End of Wave";
 			public const string Pause = "Pause";
 			public const string GameOver = "Game Over";
 			public const string Credits = "Credits";
@@ -49,6 +52,10 @@ namespace Prototype
 		[SerializeField] GameObject settingsUI;
 		[SerializeField] GameObject ingame;
 		[SerializeField] GameObject ingameUI;
+		[SerializeField] GameObject endOfWave;
+		[SerializeField] GameObject endOfWaveUI;
+		[SerializeField] GameObject upgradeMenu;
+		[SerializeField] GameObject upgradeMenuUI;
 		[SerializeField] GameObject pause;
 		[SerializeField] GameObject pauseUI;
 		[SerializeField] GameObject gameOver;
