@@ -16,9 +16,10 @@ namespace Prototype.Pending
         [SerializeField] float maxClickInterval = .15f;
 
         public UnityEvent onLeftClick;
-        public UnityEvent onRightClick;
 
         public bool active;
+
+        [SerializeField] SoundEffectCollection clickSound;
 
         Animator animator;
         bool destroyed;
@@ -87,11 +88,8 @@ namespace Prototype.Pending
             {
                 case 0:
                     onLeftClick.Invoke();
+                    clickSound.PlayRandomClip();
                     AnimatorSetTrigger("Click");
-                    break;
-
-                case 1:
-                    onRightClick.Invoke();
                     break;
             }
         }

@@ -435,7 +435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685079602}
   m_LocalRotation: {x: 0.47185796, y: 0, z: 0, w: 0.8816746}
-  m_LocalPosition: {x: 0, y: 22, z: -39}
+  m_LocalPosition: {x: 0, y: 22, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1119,7 +1119,6 @@ MonoBehaviour:
   creditsUI: {fileID: 5342018776118852926, guid: e6de27c447b60c04cbb5e3d04866629c, type: 3}
   exit: {fileID: 0}
   exitUI: {fileID: 0}
-  theMusic: {fileID: 11400000, guid: 05f3c0e5640e5e54a9a8e74ea9ef6c37, type: 2}
   enemyItems:
   - {fileID: 11400000, guid: 55a76f101fb481a4bb54083b81265dfe, type: 2}
   - {fileID: 11400000, guid: 29f393e3b95ca8d4099088dcf91db96f, type: 2}
