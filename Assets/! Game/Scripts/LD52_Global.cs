@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 
 namespace Prototype
@@ -54,62 +55,60 @@ namespace Prototype
         public int money;
 
         [Serializable]
-        public class Upgrades
+        public class Ability
         {
-            [Serializable]
-            public class Ability
-            {
-                public int level;
-                public int maxLevel = 3;
-                public InterpolationCurve.InterpolationCurve curve;
-                public InterpolationCurve.InterpolationCurve costsCurve;
-
-                public void Reset()
-                {
-                    level = 0;
-                }
-
-                public void Upgrade()
-                {
-                    var nextLevel = Mathf.Min(level + 1, maxLevel);
-                    var costs = GetCosts(nextLevel);
-                    if (instance.money >= costs)
-                    {
-                        instance.money -= costs;
-                        level = nextLevel;
-                    }
-                }
-
-                public float GetCurrent()
-                {
-                    return curve.Evaluate(level / (float) maxLevel);
-                }
-
-                public int GetCosts(int level)
-                {
-                    return Mathf.RoundToInt(costsCurve.Evaluate((level - 1) / (float) maxLevel));
-                }
-            }
-
-            public Ability moveSpeed;
-            public Ability harvestRadius;
-            public Ability harvestStrength;
-            public Ability shootSpeed;
-            public Ability shootDamage;
-            public Ability carryingCapacity;
+            public AbilityType abilityType;
+            public int level;
+            public int maxLevel = 3;
+            public InterpolationCurve.InterpolationCurve curve;
+            public InterpolationCurve.InterpolationCurve costsCurve;
 
             public void Reset()
             {
-                moveSpeed.Reset();
-                harvestRadius.Reset();
-                harvestStrength.Reset();
-                shootSpeed.Reset();
-                shootDamage.Reset();
-                carryingCapacity.Reset();
+                level = 0;
+            }
+
+            public void Upgrade()
+            {
+                var nextLevel = Mathf.Min(level + 1, maxLevel);
+                var costs = GetCosts(nextLevel);
+                if (instance.money >= costs)
+                {
+                    instance.money -= costs;
+                    level = nextLevel;
+                }
+            }
+
+            public float GetValue()
+            {
+                return curve.Evaluate(level / (float) maxLevel);
+            }
+
+            public int GetCosts(int level)
+            {
+                return Mathf.RoundToInt(costsCurve.Evaluate((level - 1) / (float) maxLevel));
             }
         }
+        public List<Ability> abilities;
 
-        public Upgrades upgrades;
+        public Ability GetAbility(AbilityType abilityType)
+        {
+            return abilities.FirstOrDefault(x => x.abilityType == abilityType);
+        }
+
+        public void ResetAbilities()
+        {
+            foreach (var ability in abilities)
+                ability.Reset();
+        }
+
+        public bool IsFullyUpgraded()
+        {
+            foreach (var ability in abilities)
+                if (ability.level < ability.maxLevel)
+                    return false;
+            return true;
+        }
 
         [Serializable]
         public class Wave
@@ -178,22 +177,11 @@ namespace Prototype
 
             money = 0;
 
-            upgrades.Reset();
+            ResetAbilities();
             wave.Reset();
             
             altarItems.Clear();
         }
-
-        public Upgrades.Ability GetAbility(Ability ability) => ability switch
-        {
-            Ability.MoveSpeed => upgrades.moveSpeed,
-            Ability.HarvestRadius => upgrades.harvestRadius,
-            Ability.HarvestStrength => upgrades.harvestStrength,
-            Ability.ShootSpeed => upgrades.shootSpeed,
-            Ability.ShootDamage => upgrades.shootDamage,
-            Ability.CarryingCapacity => upgrades.carryingCapacity,
-            _ => null,
-        };
 
         public void GameStateMachineTrigger(string name)
         {

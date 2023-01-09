@@ -7,40 +7,50 @@ namespace Prototype
     public class LD52_UpgradeGroup : MonoBehaviour
     {
         public string title;
-        [SerializeField] GameObject buttonPrefab;
+        public GameObject buttonPrefab;
+        public AbilityType abilityType;
+
+        LD52_Global.Ability ability;
 
         readonly List<Pending.ButtonUI> buttons = new();
 
-        public Ability ability;
-
-        LD52_Global.Upgrades.Ability _ability;
-
         void Awake()
         {
-            _ability = LD52_Global.instance.GetAbility(ability);
+            ability = LD52_Global.instance.GetAbility(abilityType);
 
             gameObject.KillChildren();
 
             buttons.Clear();
-            for (int i = 0; i < _ability.maxLevel; i++)
+            for (int i = 0; i < ability.maxLevel; i++)
             {
                 var button = buttonPrefab.Instantiate(parent: transform).GetComponent<Pending.ButtonUI>();
-                button.transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = title;
-                button.transform.Find("Level").GetComponent<TMPro.TextMeshProUGUI>().text = $"+{i + 1}";
-                button.transform.Find("Costs").GetComponent<TMPro.TextMeshProUGUI>().text = $"$ {_ability.GetCosts(i + 1)}";
-                button.onLeftClick.AddListener(_ability.Upgrade);
+                SetTextOf(button, "Text", title);
+                SetTextOf(button, "Level", $"+{i + 1}");
+                SetTextOf(button, "Costs", $"$ {ability.GetCosts(i + 1)}");
+                button.onLeftClick.AddListener(ability.Upgrade);
                 buttons.Add(button);
             }
         }
 
         void Update()
         {
-            for (int i = 0; i < _ability.maxLevel; i++)
+            for (int i = 0; i < ability.maxLevel; i++)
             {
-                buttons[i].enabled = i <= _ability.level;
-                buttons[i].active = i < _ability.level;
-                buttons[i].transform.Find("Costs").gameObject.SetActive(!buttons[i].active && buttons[i].enabled);
+                buttons[i].enabled = i <= ability.level;
+                buttons[i].active = i < ability.level;
+
+                Get(buttons[i], "Costs").gameObject.SetActive(!buttons[i].active && buttons[i].enabled);
             }
+        }
+
+        static Transform Get(Pending.ButtonUI button, string name)
+        {
+            return button.transform.Find(name);
+        }
+
+        static void SetTextOf(Pending.ButtonUI button, string name, string text)
+        {
+            Get(button, name).GetComponent<TMPro.TextMeshProUGUI>().text = text;
         }
     }
 }

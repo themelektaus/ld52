@@ -33,7 +33,7 @@ Material:
     - _Saturation: 0.5
     - _Scale: 1
     - _Size: 2
-    - _Weight: 0
+    - _Weight: 1
     m_Colors:
     - _AdditiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _MultiplyColor: {r: 0.92156863, g: 0.92156863, b: 0.92156863, a: 1}

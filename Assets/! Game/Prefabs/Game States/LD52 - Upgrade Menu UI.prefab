@@ -514,6 +514,10 @@ PrefabInstance:
       propertyPath: ability
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
+      propertyPath: abilityType
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -706,6 +710,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
       propertyPath: ability
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
+      propertyPath: abilityType
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -902,6 +910,10 @@ PrefabInstance:
       propertyPath: ability
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
+      propertyPath: abilityType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1094,6 +1106,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
       propertyPath: ability
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
+      propertyPath: abilityType
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1584,6 +1600,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
       propertyPath: ability
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947681723368871460, guid: 5c4e63fe9adbbc845a5ee49ef806f1df, type: 3}
+      propertyPath: abilityType
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []

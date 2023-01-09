@@ -17,36 +17,104 @@ MonoBehaviour:
   gameOverState: 0
   money: 0
   upgrades:
+    abilities:
+    - abilityType: 0
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: 7951d6e540fcdfb499fa5e5315b22035, type: 2}
+      costsCurve: {fileID: 11400000, guid: 26fdf9ddf873ecf4fab00272e6ec0d59, type: 2}
+    - abilityType: 1
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: b33c745d73a67814ab64d0f3d88a01b5, type: 2}
+      costsCurve: {fileID: 11400000, guid: 97163af8a234bfd4e9c520e11c0590be, type: 2}
+    - abilityType: 2
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: 7951d6e540fcdfb499fa5e5315b22035, type: 2}
+      costsCurve: {fileID: 11400000, guid: 26fdf9ddf873ecf4fab00272e6ec0d59, type: 2}
+    - abilityType: 3
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: eb88bd023a94e1b428fb6d38c5e14937, type: 2}
+      costsCurve: {fileID: 11400000, guid: 5f3bfacc4c8b5df4d8b79db83375f6ec, type: 2}
+    - abilityType: 4
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: 9f030fb5370bf664c8d1667f018faa82, type: 2}
+      costsCurve: {fileID: 11400000, guid: 490d03bd62f08eb4ea80506f8a16d39e, type: 2}
+    - abilityType: 5
+      level: 0
+      maxLevel: 3
+      curve: {fileID: 11400000, guid: b5028e5621423ae4584dc5df66246fe5, type: 2}
+      costsCurve: {fileID: 11400000, guid: 37e73ce282a32814a9af0cca0e1db100, type: 2}
     moveSpeed:
+      abilityType: 0
       level: 0
       maxLevel: 3
       curve: {fileID: 11400000, guid: 7951d6e540fcdfb499fa5e5315b22035, type: 2}
       costsCurve: {fileID: 11400000, guid: 26fdf9ddf873ecf4fab00272e6ec0d59, type: 2}
     harvestRadius:
+      abilityType: 0
       level: 0
       maxLevel: 3
       curve: {fileID: 11400000, guid: b33c745d73a67814ab64d0f3d88a01b5, type: 2}
       costsCurve: {fileID: 11400000, guid: 97163af8a234bfd4e9c520e11c0590be, type: 2}
     harvestStrength:
+      abilityType: 0
       level: 0
       maxLevel: 3
       curve: {fileID: 11400000, guid: 3e3c5e85fb649fa4fa74ab28d660e55d, type: 2}
       costsCurve: {fileID: 11400000, guid: 75d504f739738a94ab46683582677d95, type: 2}
     shootSpeed:
+      abilityType: 0
       level: 0
       maxLevel: 3
       curve: {fileID: 11400000, guid: eb88bd023a94e1b428fb6d38c5e14937, type: 2}
       costsCurve: {fileID: 11400000, guid: 5f3bfacc4c8b5df4d8b79db83375f6ec, type: 2}
     shootDamage:
+      abilityType: 0
       level: 0
       maxLevel: 3
       curve: {fileID: 11400000, guid: 9f030fb5370bf664c8d1667f018faa82, type: 2}
       costsCurve: {fileID: 11400000, guid: 490d03bd62f08eb4ea80506f8a16d39e, type: 2}
     carryingCapacity:
+      abilityType: 0
       level: 0
       maxLevel: 3
       curve: {fileID: 11400000, guid: b5028e5621423ae4584dc5df66246fe5, type: 2}
       costsCurve: {fileID: 11400000, guid: 37e73ce282a32814a9af0cca0e1db100, type: 2}
+  abilities:
+  - abilityType: 0
+    level: 0
+    maxLevel: 3
+    curve: {fileID: 11400000, guid: 7951d6e540fcdfb499fa5e5315b22035, type: 2}
+    costsCurve: {fileID: 11400000, guid: 26fdf9ddf873ecf4fab00272e6ec0d59, type: 2}
+  - abilityType: 1
+    level: 0
+    maxLevel: 3
+    curve: {fileID: 11400000, guid: b33c745d73a67814ab64d0f3d88a01b5, type: 2}
+    costsCurve: {fileID: 11400000, guid: 97163af8a234bfd4e9c520e11c0590be, type: 2}
+  - abilityType: 2
+    level: 0
+    maxLevel: 3
+    curve: {fileID: 11400000, guid: 3e3c5e85fb649fa4fa74ab28d660e55d, type: 2}
+    costsCurve: {fileID: 11400000, guid: 75d504f739738a94ab46683582677d95, type: 2}
+  - abilityType: 3
+    level: 0
+    maxLevel: 3
+    curve: {fileID: 11400000, guid: eb88bd023a94e1b428fb6d38c5e14937, type: 2}
+    costsCurve: {fileID: 11400000, guid: 5f3bfacc4c8b5df4d8b79db83375f6ec, type: 2}
+  - abilityType: 4
+    level: 0
+    maxLevel: 3
+    curve: {fileID: 11400000, guid: 9f030fb5370bf664c8d1667f018faa82, type: 2}
+    costsCurve: {fileID: 11400000, guid: 490d03bd62f08eb4ea80506f8a16d39e, type: 2}
+  - abilityType: 5
+    level: 0
+    maxLevel: 3
+    curve: {fileID: 11400000, guid: b5028e5621423ae4584dc5df66246fe5, type: 2}
+    costsCurve: {fileID: 11400000, guid: 37e73ce282a32814a9af0cca0e1db100, type: 2}
   wave:
     index: 0
     maxIndex: 10

@@ -352,8 +352,12 @@ PrefabInstance:
       value: 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 7586416392950528032, guid: c4a12c16d9446354d9c44067d05b9b2f, type: 3}
+      propertyPath: m_Height
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586416392950528032, guid: c4a12c16d9446354d9c44067d05b9b2f, type: 3}
       propertyPath: m_Radius
-      value: 0.4
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7806739932324377071, guid: c4a12c16d9446354d9c44067d05b9b2f, type: 3}
       propertyPath: m_Materials.Array.data[0]

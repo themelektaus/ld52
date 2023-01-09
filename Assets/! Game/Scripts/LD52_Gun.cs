@@ -34,9 +34,9 @@ namespace Prototype
                 .Instantiate(position: player.character.agentPosition + Vector3.up)
                 .GetComponent<LD52_Projectile>();
 
-            var shootSpeed = LD52_Global.instance.upgrades.shootSpeed.GetCurrent();
+            var shootSpeed = LD52_Global.instance.GetAbility(AbilityType.ShootSpeed).GetValue();
             projectile.speed = 5 + shootSpeed / 5;
-            projectile.damage = LD52_Global.instance.upgrades.shootDamage.GetCurrent();
+            projectile.damage = LD52_Global.instance.GetAbility(AbilityType.ShootDamage).GetValue();
             projectile.direction = (transform.position - player.character.agentPosition).ToXZ();
 
             shootTimer = 10 / shootSpeed;

@@ -71,26 +71,18 @@ namespace Prototype
         {
             wave.UpdateTime();
 
-            if (wave.time == wave.duration)
+            if (wave.time != wave.duration)
+                return;
+
+            if (global.IsFullyUpgraded())
             {
-                if (
-                    global.upgrades.moveSpeed.maxLevel <= global.upgrades.moveSpeed.level &&
-                    global.upgrades.harvestRadius.maxLevel <= global.upgrades.harvestRadius.level &&
-                    global.upgrades.harvestStrength.maxLevel <= global.upgrades.harvestStrength.level &&
-                    global.upgrades.shootSpeed.maxLevel <= global.upgrades.shootSpeed.level &&
-                    global.upgrades.shootDamage.maxLevel <= global.upgrades.shootDamage.level &&
-                    global.upgrades.carryingCapacity.maxLevel <= global.upgrades.carryingCapacity.level
-                )
-                {
-                    global.gameOverState = GameOverState.Victory;
-                    Trigger(Triggers.GameOver);
-                }
-                else
-                {
-                    global.gameOverState = GameOverState.Failed;
-                    Trigger(Triggers.EndOfWave);
-                }
+                global.gameOverState = GameOverState.Victory;
+                Trigger(Triggers.GameOver);
+                    return;
             }
+
+            global.gameOverState = GameOverState.Failed;
+            Trigger(Triggers.EndOfWave);
         }
 
         [BeforeExit(States.Ingame)]

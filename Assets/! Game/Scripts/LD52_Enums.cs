@@ -1,6 +1,6 @@
 namespace Prototype
 {
-    public enum Ability
+    public enum AbilityType
     {
         MoveSpeed,
         HarvestRadius, HarvestStrength,

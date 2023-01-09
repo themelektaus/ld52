@@ -25,8 +25,17 @@ namespace Prototype
 
         void Awake()
         {
-            radius = LD52_Global.instance.upgrades.harvestRadius.GetCurrent();
-            strength = LD52_Global.instance.upgrades.harvestStrength.GetCurrent();
+            radius = LD52_Global.instance.GetAbility(AbilityType.HarvestRadius).GetValue();
+            strength = LD52_Global.instance.GetAbility(AbilityType.HarvestStrength).GetValue();
+
+            Enable(false);
+        }
+
+        void Enable(bool enabled)
+        {
+            circle.SetActive(enabled);
+            var emission = particleEffect.emission;
+            emission.enabled = enabled;
         }
 
         void Update()
@@ -38,15 +47,11 @@ namespace Prototype
 
             if (!LD52_Global.GetInputHarvest())
             {
-                circle.SetActive(false);
-                var emission2 = particleEffect.emission;
-                emission2.enabled = false;
+                Enable(false);
                 return;
             }
 
-            circle.SetActive(true);
-            var emission = particleEffect.emission;
-            emission.enabled = true;
+            Enable(true);
 
             var player = LD52_Global.instance.GetPlayer();
             if (!player)

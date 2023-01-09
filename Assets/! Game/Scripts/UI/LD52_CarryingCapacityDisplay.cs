@@ -15,7 +15,7 @@ namespace Prototype
                 return;
 
             var a = player.items.Count;
-            var b = LD52_Global.instance.GetAbility(Ability.CarryingCapacity).GetCurrent();
+            var b = LD52_Global.instance.GetAbility(AbilityType.CarryingCapacity).GetValue();
 
             text1.text = a.ToString();
             text3.text = b.ToString();

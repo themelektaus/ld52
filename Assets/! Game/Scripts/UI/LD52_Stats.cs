@@ -36,10 +36,6 @@ namespace Prototype
             a = Mathf.Max(0, global.altarValue - global.wave.minAltarValue);
             b = global.deadEnemiesValue;
 
-            Debug.Log(global.altarValue);
-            Debug.Log(global.wave.minAltarValue);
-            Debug.Log(b);
-
             var c = a - b;
 
             moneyWon.SetActive(a > 0);
