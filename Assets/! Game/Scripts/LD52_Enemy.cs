@@ -89,17 +89,20 @@ namespace Prototype
             var player = LD52_Global.instance.GetPlayer();
             if (player && player.Add(item))
                 gameObject.Destroy();
+
+            LD52_Global.instance.sounds.harvest.PlayRandomClip();
         }
 
         void OnDigOut()
         {
             buried = false;
             character.agent.enabled = true;
-            LD52_Global.instance.PlayDigOutSound();
-
+            
             var position = mesh.localPosition;
             position.y = -.1f;
             mesh.localPosition = position;
+
+            LD52_Global.instance.sounds.digOut.PlayRandomClip();
         }
 
         Vector3 GetDirectionToPlayer()

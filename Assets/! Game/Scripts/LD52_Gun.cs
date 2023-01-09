@@ -28,7 +28,7 @@ namespace Prototype
             if (!player)
                 return;
 
-            LD52_Global.instance.PlayBulledSound();
+            LD52_Global.instance.sounds.bullet.PlayRandomClip();
 
             var projectile = this.projectile
                 .Instantiate(position: player.character.agentPosition + Vector3.up)

@@ -26,21 +26,20 @@ namespace Prototype
                 if (ingameInstance is not null)
                     ingameInstance.gameObject.name = "Ingame";
 
-                var global = LD52_Global.instance;
-                global.wave.time = 0;
+                wave.ResetTime();
                 global.altarItems.Clear();
 
+                int budget = global.wave.budget;
+                var minValue = enemyItems.Min(x => x.value);
+                
                 int breaker = 10000;
 
-                int budget = global.wave.budget;
-
-                // budget must be greater than one because the cheapest enemy costs 2
-                while (budget > 1)
+                while (budget > minValue)
                 {
                     breaker--;
                     if (breaker < 0)
                     {
-                        Debug.LogError($"{budget} 10000 oida, was is");
+                        Debug.LogError($"{budget} > {minValue}");
                         Debug.Break();
                         break;
                     }
@@ -70,16 +69,9 @@ namespace Prototype
         [Update(States.Ingame)]
         void Update_Ingame()
         {
-            var global = LD52_Global.instance;
+            wave.UpdateTime();
 
-            UpdateWave(global);
-        }
-
-        void UpdateWave(LD52_Global global)
-        {
-            global.wave.time = Mathf.Min(global.wave.time + Time.deltaTime, global.wave.duration);
-
-            if (global.wave.time == global.wave.duration)
+            if (wave.time == wave.duration)
             {
                 if (
                     global.upgrades.moveSpeed.maxLevel <= global.upgrades.moveSpeed.level &&
@@ -90,12 +82,12 @@ namespace Prototype
                     global.upgrades.carryingCapacity.maxLevel <= global.upgrades.carryingCapacity.level
                 )
                 {
-                    LD52_Global.instance.gameOverState = 2;
+                    global.gameOverState = GameOverState.Victory;
                     Trigger(Triggers.GameOver);
                 }
                 else
                 {
-                    LD52_Global.instance.gameOverState = 1;
+                    global.gameOverState = GameOverState.Failed;
                     Trigger(Triggers.EndOfWave);
                 }
             }
@@ -104,7 +96,10 @@ namespace Prototype
         [BeforeExit(States.Ingame)]
         void BeforeExit_Ingame()
         {
-            LD52_Global.instance.UpdateDeadEnemiesValue();
+            global.enemyQuery.ClearCache();
+            global.deadEnemiesValue = global.GetEnemies()
+                .Where(x => x && !x.character.enabled)
+                .Count();
 
             gameStateInstances.DestroyChildrenOf(ingameUI);
         }

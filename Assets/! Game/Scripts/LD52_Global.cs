@@ -49,6 +49,8 @@ namespace Prototype
             }
         }
 
+        public GameOverState gameOverState;
+
         public int money;
 
         [Serializable]
@@ -61,6 +63,11 @@ namespace Prototype
                 public int maxLevel = 3;
                 public InterpolationCurve.InterpolationCurve curve;
                 public InterpolationCurve.InterpolationCurve costsCurve;
+
+                public void Reset()
+                {
+                    level = 0;
+                }
 
                 public void Upgrade()
                 {
@@ -90,6 +97,16 @@ namespace Prototype
             public Ability shootSpeed;
             public Ability shootDamage;
             public Ability carryingCapacity;
+
+            public void Reset()
+            {
+                moveSpeed.Reset();
+                harvestRadius.Reset();
+                harvestStrength.Reset();
+                shootSpeed.Reset();
+                shootDamage.Reset();
+                carryingCapacity.Reset();
+            }
         }
 
         public Upgrades upgrades;
@@ -107,25 +124,48 @@ namespace Prototype
             public int budget => (int) budgetCurve.Evaluate(index / (float) maxIndex);
             public float duration => durationCurve.Evaluate(index / (float) maxIndex);
             public int minAltarValue => Mathf.RoundToInt(minAltarValueCurve.Evaluate(index / (float) maxIndex));
+
+            public void Reset()
+            {
+                index = 0;
+                ResetTime();
+            }
+
+            public void ResetTime()
+            {
+                time = 0;
+            }
+
+            public void UpdateTime()
+            {
+                time = Mathf.Min(time + Time.deltaTime, duration);
+            }
+
+            public void Next()
+            {
+                index = Mathf.Min(maxIndex, index + 1);
+            }
         }
         public Wave wave;
 
         public List<LD52_EnemyItem> altarItems;
         public int altarValue => altarItems.Sum(x => x.value);
-        public int deadEnemiesValue { get; private set; }
-        public void UpdateDeadEnemiesValue()
+
+        public int deadEnemiesValue;
+
+        public SoundEffectCollection music;
+
+        [Serializable]
+        public class Sounds
         {
-            enemyQuery.ClearCache();
-            deadEnemiesValue = GetEnemies().Where(x => x && !x.character.enabled).Count();
+            public SoundEffectCollection digOut;
+            public SoundEffectCollection harvest;
+            public SoundEffectCollection hit;
+            public SoundEffectCollection die;
+            public SoundEffectCollection bullet;
+            public SoundEffectCollection altar;
         }
-
-        [SerializeField] SoundEffectCollection digOutSound;
-        [SerializeField] SoundEffectCollection harvestSound;
-        [SerializeField] SoundEffectCollection hitSound;
-        [SerializeField] SoundEffectCollection deathSound;
-        [SerializeField] SoundEffectCollection bulletSound;
-
-        public int gameOverState;
+        public Sounds sounds;
 
         protected override void Initialize()
         {
@@ -134,20 +174,13 @@ namespace Prototype
 
         public void ResetGame()
         {
-            gameOverState = 0;
+            gameOverState = GameOverState.Canceled;
 
             money = 0;
 
-            upgrades.moveSpeed.level = 0;
-            upgrades.harvestRadius.level = 0;
-            upgrades.harvestStrength.level = 0;
-            upgrades.shootSpeed.level = 0;
-            upgrades.shootDamage.level = 0;
-            upgrades.carryingCapacity.level = 0;
-
-            wave.index = 0;
-            wave.time = 0;
-
+            upgrades.Reset();
+            wave.Reset();
+            
             altarItems.Clear();
         }
 
@@ -165,36 +198,6 @@ namespace Prototype
         public void GameStateMachineTrigger(string name)
         {
             LD52_GameStateMachine.instance.Trigger(name);
-        }
-
-        public void PlaySound(SoundEffectCollection soundEffect)
-        {
-            soundEffect.PlayRandomClip();
-        }
-
-        public void PlayDigOutSound()
-        {
-            PlaySound(digOutSound);
-        }
-
-        public void PlayHarvestSound()
-        {
-            PlaySound(harvestSound);
-        }
-
-        public void PlayHitSound()
-        {
-            PlaySound(hitSound);
-        }
-
-        public void PlayDeathSound()
-        {
-            PlaySound(deathSound);
-        }
-
-        public void PlayBulledSound()
-        {
-            PlaySound(bulletSound);
         }
 
         public static Vector2 GetInputAxis()

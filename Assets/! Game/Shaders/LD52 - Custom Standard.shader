@@ -2,8 +2,6 @@ Shader "LD52/Custom Standard"
 {
     Properties
     {
-        _GlobalAlphaIndex("Global Alpha Index", Integer) = 0
-
         _Color ("Color", Color) = (1, 1, 1, 1)
         _EmissionColor ("Emission Color", Color) = (0, 0, 0, 0)
         _MainTex ("Albedo", 2D) = "white" {}
@@ -14,9 +12,8 @@ Shader "LD52/Custom Standard"
 
         _RimColor("Rim Color", Color) = (1, 1, 1, 0.2)
         _RimIntensity("Rim Intensity", Range(0, 10)) = 0
-
-            _Hit("Hit", Range(0, 1)) = 0
-
+        
+        _Hit("Hit", Range(0, 1)) = 0
     }
     
     SubShader
@@ -28,10 +25,6 @@ Shader "LD52/Custom Standard"
         
         #pragma target 3.0
         #pragma surface surf Standard fullforwardshadows addshadow
-
-        uniform fixed _GlobalAlpha[3];
-
-        int _GlobalAlphaIndex;
 
         fixed4 _Color;
         fixed4 _EmissionColor;
@@ -72,19 +65,17 @@ Shader "LD52/Custom Standard"
 
             float2 pos = (IN.screenPos.xy / IN.screenPos.w) * _ScreenParams.xy;
 
-            half alpha = _GlobalAlpha[_GlobalAlphaIndex] * _Color.a;
-
             int x = int(pos.x) % 8;
             int y = int(pos.y) % 8;
             int index = x * 8 + y;
 
-            if (alpha - BAYER8x8[index] <= 0)
+            if (_Color.a - BAYER8x8[index] <= 0)
                 discard;
 
             float rim = _RimIntensity > 0 ? pow(1 - dot(normalize(IN.viewDir), normalize(IN.worldNormal)), _RimIntensity) : 0;
             o.Albedo = lerp(tex2D(_MainTex, IN.uv_MainTex).rgb * _Color.rgb + (_Brightness - 1), _RimColor.rgb, rim * _RimColor.a);
             o.Emission = lerp(_EmissionColor.rgb * _EmissionColor.a, _RimColor.rgb, rim * _RimColor.a) + (float3(1, .5, 0) * _Hit);
-            o.Alpha = alpha;
+            o.Alpha = _Color.a;
             o.Metallic = _Metallic * _Metallic;
             o.Smoothness = _Glossiness;
         }

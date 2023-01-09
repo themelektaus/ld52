@@ -26,7 +26,7 @@ namespace Prototype
 		{
 			gameStateInstances.Clear();
 
-			LD52_Global.instance.ResetGame();
+			global.ResetGame();
 		}
 	}
 }

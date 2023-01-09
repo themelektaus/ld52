@@ -4,15 +4,15 @@ namespace Prototype
 {
 	public class LD52_GameOver : MonoBehaviour
 	{
-        public GameObject cancelText;
-        public GameObject loseText;
-        public GameObject winText;
+        public GameObject canceledText;
+        public GameObject failedText;
+        public GameObject victoryText;
 
         void Awake()
         {
-            cancelText.SetActive(LD52_Global.instance.gameOverState == 0);
-            loseText.SetActive(LD52_Global.instance.gameOverState == 1);
-            winText.SetActive(LD52_Global.instance.gameOverState == 2);
+            canceledText.SetActive(LD52_Global.instance.gameOverState == GameOverState.Canceled);
+            failedText.SetActive(LD52_Global.instance.gameOverState == GameOverState.Failed);
+            victoryText.SetActive(LD52_Global.instance.gameOverState == GameOverState.Victory);
         }
     }
 }

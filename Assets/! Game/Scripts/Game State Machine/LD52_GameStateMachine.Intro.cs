@@ -5,7 +5,7 @@ namespace Prototype
 		[AfterEnter(States.Intro)]
 		void AfterEnter_Intro()
 		{
-			this.Wait(2).Start(() => ChangeMusic(theMusic, .6f));
+			this.Wait(2).Start(() => ChangeMusic(global.music, .6f));
 
 			gameStateInstances.Add(intro);
 			gameStateInstances.Add(introUI, mainCanvas);

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61a999748d5dc942a06b1a721e572a9, type: 3}
+  m_Name: LD52 - Die Sound
+  m_EditorClassIdentifier: 
+  defaultAudioMixerGroup: {fileID: -8159115403184202747, guid: 5b01fa18a5d31ac408fe25470b399bd7, type: 2}
+  clips:
+  - {fileID: 8300000, guid: d5629e985f7d6ef438dd5799e7ea28c3, type: 3}
+  - {fileID: 8300000, guid: 5c5a6e5a3954c964d95d1f6746825613, type: 3}
+  - {fileID: 8300000, guid: 9de5e90c55092fa40ac86e90ec45832a, type: 3}
+  - {fileID: 8300000, guid: 66c4b80226c9794489759d738555f765, type: 3}
+  - {fileID: 8300000, guid: a0c4abdd0f51991489885bf30e291142, type: 3}

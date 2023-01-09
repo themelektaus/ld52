@@ -65,14 +65,14 @@ namespace Prototype
 		LD52_GameStateInstances gameStateInstances;
 
 		SoundEffectInstance music;
-		[SerializeField] SoundEffectCollection theMusic;
+
+		LD52_Global global => LD52_Global.instance;
+		LD52_Global.Wave wave => global.wave;
 
 		protected override void OnAwake()
         {
 			instance = this;
 			gameStateInstances = new(this);
-
-			LD52_GlobalAlpha.SetValue(0, 1);
 		}
 
 		void ChangeMusic(SoundEffectCollection music, float volume)

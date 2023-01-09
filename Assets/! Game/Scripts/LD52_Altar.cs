@@ -52,7 +52,10 @@ namespace Prototype
         public void Feed()
         {
             if (feed.target == 0)
+            {
                 altarEffect.Instantiate(position: altarEffectPosition.position);
+                LD52_Global.instance.sounds.altar.PlayRandomClip();
+            }
 
             feed.target = 1;
         }

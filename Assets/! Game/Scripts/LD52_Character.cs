@@ -87,13 +87,13 @@ namespace Prototype
             health = Mathf.Max(0, health - damage);
             if (health == 0)
             {
-                LD52_Global.instance.PlayDeathSound();
+                LD52_Global.instance.sounds.die.PlayRandomClip();
                 animator.SetTrigger("Die");
                 onDie?.Invoke();
             }
             else
             {
-                LD52_Global.instance.PlayHitSound();
+                LD52_Global.instance.sounds.hit.PlayRandomClip();
             }
         }
 
@@ -102,7 +102,6 @@ namespace Prototype
             harvestLife = Mathf.Max(0, harvestLife - value);
             if (harvestLife == 0)
             {
-                LD52_Global.instance.PlayHarvestSound();
                 //animator.SetTrigger("Harvest");
                 onHarvest?.Invoke();
             }

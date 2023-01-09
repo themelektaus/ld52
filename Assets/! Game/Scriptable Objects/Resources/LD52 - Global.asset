@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerQuery: {fileID: 11400000, guid: 9ae332ad1028b6440938f89808b0a960, type: 2}
   enemyQuery: {fileID: 11400000, guid: e57fab43fb8f5e34d8995ad139474792, type: 2}
+  gameOverState: 0
   money: 0
   upgrades:
     moveSpeed:
@@ -54,9 +55,12 @@ MonoBehaviour:
     durationCurve: {fileID: 11400000, guid: 38a0646c811fb4343b4791e241953698, type: 2}
     minAltarValueCurve: {fileID: 11400000, guid: 714a6325f82c44542a3c83c549634221, type: 2}
   altarItems: []
-  digOutSound: {fileID: 11400000, guid: 74abb3b3dcd360140aa9693aa3468866, type: 2}
-  harvestSound: {fileID: 11400000, guid: 2840fe1523833ae448dc421b9ad58ecf, type: 2}
-  hitSound: {fileID: 11400000, guid: ed867b652bfaf1142a18d1f99db97755, type: 2}
-  deathSound: {fileID: 11400000, guid: 3f72d44917b86b0418230c18ed98796c, type: 2}
-  bulletSound: {fileID: 11400000, guid: c3ae12a1dc488c248a376a007f27891c, type: 2}
-  gameOverState: 0
+  deadEnemiesValue: 0
+  music: {fileID: 11400000, guid: 05f3c0e5640e5e54a9a8e74ea9ef6c37, type: 2}
+  sounds:
+    digOut: {fileID: 11400000, guid: 74abb3b3dcd360140aa9693aa3468866, type: 2}
+    harvest: {fileID: 11400000, guid: 2840fe1523833ae448dc421b9ad58ecf, type: 2}
+    hit: {fileID: 11400000, guid: ed867b652bfaf1142a18d1f99db97755, type: 2}
+    die: {fileID: 11400000, guid: 3f72d44917b86b0418230c18ed98796c, type: 2}
+    bullet: {fileID: 11400000, guid: c3ae12a1dc488c248a376a007f27891c, type: 2}
+    altar: {fileID: 11400000, guid: efcd735b51cc9e14eaa720a88cb0baf7, type: 2}

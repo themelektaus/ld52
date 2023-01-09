@@ -7,7 +7,6 @@ namespace Prototype
 		[BeforeEnter(States.EndOfWave)]
 		void BeforeEnter_EndOfWave()
 		{
-			var global = LD52_Global.instance;
 			global.money += Mathf.Max(0, global.altarValue - global.wave.minAltarValue);
 			global.money = Mathf.Max(0, global.money - global.deadEnemiesValue);
 		}
@@ -30,8 +29,7 @@ namespace Prototype
 		{
 			gameStateInstances.Clear();
 
-			var wave = LD52_Global.instance.wave;
-			wave.index = Mathf.Min(wave.maxIndex, wave.index + 1);
+			wave.Next();
 		}
 	}
 }
