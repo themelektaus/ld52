@@ -195,12 +195,12 @@ namespace Prototype
 
         public static bool GetInputShoot()
         {
-            return Input.GetMouseButton(0);
+            return Utils.IsMouseButton_ButNotUI(0);
         }
 
         public static bool GetInputHarvest()
         {
-            return Input.GetMouseButton(1);
+            return Utils.IsMouseButton_ButNotUI(1);
         }
 
         public static RaycastHit? GetMouseGroundHit()

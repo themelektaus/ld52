@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Prototype
 {
-	public class LD52_Static : MonoBehaviour, IObserver<LD52_Projectile.HitMessage>
+	public class LD52_ProjectileHitDestroy : MonoBehaviour, IObserver<LD52_Projectile.HitMessage>
 	{
         [SerializeField] new Collider collider;
         
